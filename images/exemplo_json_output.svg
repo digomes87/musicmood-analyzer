@@ -1,19 +1,18 @@
 <svg width="650" height="500" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
-      .title { font-family: 'Courier New', monospace; font-size: 16px; font-weight: bold; fill: #2c3e50; }
-      .json-key { font-family: 'Courier New', monospace; font-size: 11px; fill: #8e44ad; }
-      .json-string { font-family: 'Courier New', monospace; font-size: 11px; fill: #27ae60; }
-      .json-number { font-family: 'Courier New', monospace; font-size: 11px; fill: #e67e22; }
-      .json-bool { font-family: 'Courier New', monospace; font-size: 11px; fill: #3498db; }
-      .json-bracket { font-family: 'Courier New', monospace; font-size: 11px; fill: #2c3e50; }
-      .border { fill: none; stroke: #bdc3c7; stroke-width: 2; }
+      .title { font-family: 'Courier New', monospace; font-size: 16px; font-weight: bold; fill: #ffffff; }
+      .json-key { font-family: 'Courier New', monospace; font-size: 12px; fill: #79c0ff; font-weight: 600; }
+      .json-string { font-family: 'Courier New', monospace; font-size: 12px; fill: #a5d6ff; }
+      .json-number { font-family: 'Courier New', monospace; font-size: 12px; fill: #ffa657; }
+      .json-bool { font-family: 'Courier New', monospace; font-size: 12px; fill: #79c0ff; }
+      .json-bracket { font-family: 'Courier New', monospace; font-size: 12px; fill: #f0f6fc; font-weight: bold; }
     </style>
   </defs>
   
   <!-- Background -->
-  <rect width="650" height="500" fill="#f8f9fa" rx="10"/>
-  <rect x="10" y="10" width="630" height="480" fill="#ffffff" stroke="#dee2e6" stroke-width="1" rx="8"/>
+  <rect width="650" height="500" fill="#0d1117" stroke="#30363d" stroke-width="2" rx="8"/>
+  <rect x="15" y="15" width="620" height="470" fill="#161b22" stroke="#21262d" stroke-width="1" rx="6"/>
   
   <!-- Header -->
   <text x="325" y="35" text-anchor="middle" class="title">Saída JSON - MusicMood Analyzer</text>
