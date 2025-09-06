@@ -233,6 +233,7 @@ The project is organized in thematic branches:
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Author
+Diego Go
 
 Developed as part of a musical analysis project using natural language processing techniques.
 
