@@ -7,7 +7,7 @@ from urllib.parse import quote
 
 
 class LyricsFetcher:
-    """Busca letras de músicas de fontes online."""
+    """Fetches song lyrics from online sources."""
     
     def __init__(self):
         self.session = requests.Session()
@@ -16,8 +16,8 @@ class LyricsFetcher:
         })
     
     def fetch_lyrics(self, artist: str, song: str) -> Optional[str]:
-        """Busca a letra de uma música usando múltiplas fontes."""
-        # Tenta diferentes fontes
+        """Fetches song lyrics using multiple sources."""
+        # Try different sources
         sources = [
             self._fetch_from_azlyrics,
             self._fetch_from_genius,
@@ -27,18 +27,18 @@ class LyricsFetcher:
         for source in sources:
             try:
                 lyrics = source(artist, song)
-                if lyrics and len(lyrics.strip()) > 50:  # Verifica se a letra tem conteúdo suficiente
+                if lyrics and len(lyrics.strip()) > 50:  # Check if lyrics have sufficient content
                     return self._clean_lyrics(lyrics)
-                time.sleep(1)  # Respeita rate limiting
+                time.sleep(1)  # Respect rate limiting
             except Exception as e:
-                print(f"Erro ao buscar letra em {source.__name__}: {e}")
+                print(f"Error fetching lyrics from {source.__name__}: {e}")
                 continue
         
         return None
     
     def _fetch_from_azlyrics(self, artist: str, song: str) -> Optional[str]:
-        """Busca letra no AZLyrics."""
-        # Limpa e formata os nomes para URL
+        """Fetches lyrics from AZLyrics."""
+        # Clean and format names for URL
         artist_clean = re.sub(r'[^a-zA-Z0-9]', '', artist.lower())
         song_clean = re.sub(r'[^a-zA-Z0-9]', '', song.lower())
         
@@ -50,11 +50,11 @@ class LyricsFetcher:
         
         soup = BeautifulSoup(response.content, 'html.parser')
         
-        # AZLyrics usa divs sem classe específica para as letras
+        # AZLyrics uses divs without specific class for lyrics
         lyrics_divs = soup.find_all('div', class_=False, id=False)
         for div in lyrics_divs:
             if div.get_text().strip() and len(div.get_text().strip()) > 100:
-                # Verifica se parece com letra (tem quebras de linha)
+                # Check if it looks like lyrics (has line breaks)
                 text = div.get_text().strip()
                 if '\n' in text or '<br>' in str(div):
                     return text
@@ -62,8 +62,8 @@ class LyricsFetcher:
         return None
     
     def _fetch_from_genius(self, artist: str, song: str) -> Optional[str]:
-        """Busca letra no Genius (método simplificado via web scraping)."""
-        # Busca primeiro pela API de busca do Genius
+        """Fetches lyrics from Genius (simplified method via web scraping)."""
+        # Search first using Genius search API
         search_url = "https://genius.com/api/search/multi"
         params = {
             'per_page': 5,
@@ -76,7 +76,7 @@ class LyricsFetcher:
         
         data = response.json()
         
-        # Procura pela música nos resultados
+        # Search for the song in results
         for section in data.get('response', {}).get('sections', []):
             for hit in section.get('hits', []):
                 if hit.get('type') == 'song':
@@ -87,14 +87,14 @@ class LyricsFetcher:
         return None
     
     def _fetch_genius_lyrics_from_url(self, url: str) -> Optional[str]:
-        """Extrai letra de uma página específica do Genius."""
+        """Extracts lyrics from a specific Genius page."""
         response = self.session.get(url, timeout=10)
         if response.status_code != 200:
             return None
         
         soup = BeautifulSoup(response.content, 'html.parser')
         
-        # Genius usa diferentes seletores para as letras
+        # Genius uses different selectors for lyrics
         lyrics_containers = [
             soup.find('div', {'data-lyrics-container': 'true'}),
             soup.find('div', class_='lyrics'),
@@ -103,7 +103,7 @@ class LyricsFetcher:
         
         for container in lyrics_containers:
             if container:
-                # Remove elementos desnecessários
+                # Remove unnecessary elements
                 for elem in container.find_all(['script', 'style', 'a']):
                     elem.decompose()
                 
@@ -114,8 +114,8 @@ class LyricsFetcher:
         return None
     
     def _fetch_from_letras(self, artist: str, song: str) -> Optional[str]:
-        """Busca letra no Letras.mus.br."""
-        # Formata para URL do Letras.mus.br
+        """Fetches lyrics from Letras.mus.br."""
+        # Format for Letras.mus.br URL
         artist_url = quote(artist.lower().replace(' ', '-'))
         song_url = quote(song.lower().replace(' ', '-'))
         
@@ -127,13 +127,13 @@ class LyricsFetcher:
         
         soup = BeautifulSoup(response.content, 'html.parser')
         
-        # Letras.mus.br usa div com classe específica
+        # Letras.mus.br uses div with specific class
         lyrics_div = soup.find('div', class_='cnt-letra')
         if not lyrics_div:
             lyrics_div = soup.find('div', class_='letra-cnt')
         
         if lyrics_div:
-            # Remove elementos desnecessários
+            # Remove unnecessary elements
             for elem in lyrics_div.find_all(['script', 'style']):
                 elem.decompose()
             
@@ -144,26 +144,26 @@ class LyricsFetcher:
         return None
     
     def _clean_lyrics(self, lyrics: str) -> str:
-        """Limpa e formata a letra da música."""
+        """Cleans and formats song lyrics."""
         if not lyrics:
             return ""
         
-        # Remove caracteres especiais e limpa o texto
+        # Remove special characters and clean text
         lyrics = re.sub(r'\[.*?\]', '', lyrics)  # Remove [Verse], [Chorus], etc.
-        lyrics = re.sub(r'\(.*?\)', '', lyrics)  # Remove (repetições), etc.
-        lyrics = re.sub(r'\n\s*\n', '\n\n', lyrics)  # Normaliza quebras de linha
-        lyrics = re.sub(r'^\s+|\s+$', '', lyrics, flags=re.MULTILINE)  # Remove espaços extras
+        lyrics = re.sub(r'\(.*?\)', '', lyrics)  # Remove (repetitions), etc.
+        lyrics = re.sub(r'\n\s*\n', '\n\n', lyrics)  # Normalize line breaks
+        lyrics = re.sub(r'^\s+|\s+$', '', lyrics, flags=re.MULTILINE)  # Remove extra spaces
         
-        # Remove linhas muito curtas (provavelmente não são letra)
+        # Remove very short lines (probably not lyrics)
         lines = lyrics.split('\n')
         cleaned_lines = []
         for line in lines:
             line = line.strip()
-            if len(line) > 2 and not line.isdigit():  # Remove números de linha
+            if len(line) > 2 and not line.isdigit():  # Remove line numbers
                 cleaned_lines.append(line)
         
         return '\n'.join(cleaned_lines).strip()
     
     def close(self):
-        """Fecha a sessão de requests."""
+        """Closes the requests session."""
         self.session.close()

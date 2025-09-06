@@ -1,153 +1,153 @@
 # MusicMood Analyzer
 
-Sistema de Análise de Sentimento em Letras de Música que identifica automaticamente as emoções transmitidas pelas letras musicais usando processamento de linguagem natural (NLP).
+Music Lyrics Sentiment Analysis System that automatically identifies emotions conveyed by song lyrics using natural language processing (NLP).
 
-## Funcionalidades
+## Features
 
-- **Busca automática de letras**: Obtém letras de músicas de múltiplas fontes online
-- **Análise de sentimento avançada**: Utiliza NLP para identificar emoções predominantes
-- **Detecção de múltiplas emoções**: Identifica sentimentos primários e secundários
-- **Análise contextual**: Considera o contexto das frases e palavras intensificadoras
-- **Banco de dados SQLite**: Armazena resultados para consultas futuras
-- **Interface de linha de comando**: Múltiplos modos de uso (interativo, direto, análise de artista)
-- **Estatísticas de artista**: Análise completa do perfil emocional de um artista
+- **Automatic lyrics fetching**: Retrieves song lyrics from multiple online sources
+- **Advanced sentiment analysis**: Uses NLP to identify predominant emotions
+- **Multiple emotion detection**: Identifies primary and secondary sentiments
+- **Contextual analysis**: Considers phrase context and intensifying words
+- **SQLite database**: Stores results for future queries
+- **Command-line interface**: Multiple usage modes (interactive, direct, artist analysis)
+- **Artist statistics**: Complete analysis of an artist's emotional profile
 
-## Instalação
+## Installation
 
-### Pré-requisitos
+### Prerequisites
 
-- Python 3.11 ou superior
-- uv (gerenciador de pacotes Python)
+- Python 3.11 or higher
+- uv (Python package manager)
 
-### Configuração do ambiente
+### Environment Setup
 
 ```bash
-# Clone o repositório
+# Clone the repository
 git clone https://github.com/digomes87/musicmood-analyzer
 cd musicmood-analyzer
 
-# Crie e ative o ambiente virtual
+# Create and activate virtual environment
 uv venv .venv
-source .venv/bin/activate  # No Windows: .venv\Scripts\activate
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
-# Instale as dependências
+# Install dependencies
 uv pip install -e .
 ```
 
-## Uso
+## Usage
 
-### 1. Análise de Música Específica
+### 1. Specific Song Analysis
 
 ```bash
-# Análise básica
+# Basic analysis
 python main.py "Numb" "Linkin Park"
 
-# Forçar nova análise (ignora cache)
+# Force new analysis (ignores cache)
 python main.py "Numb" "Linkin Park" --force-refresh
 
-# Saída em formato JSON
+# JSON format output
 python main.py "Numb" "Linkin Park" --json
 ```
 
-**Exemplo de saída:**
+**Example output:**
 
-![Exemplo de Análise - Tristeza](images/exemplo_analise_tristeza.svg)
+![Analysis Example - Sadness](images/exemplo_analise_tristeza.svg)
 
-*Análise detalhada mostrando sentimento primário (Tristeza), secundário (Raiva), pontuação de confiança e distribuição de emoções detectadas.*
+*Detailed analysis showing primary sentiment (Sadness), secondary (Anger), confidence score and distribution of detected emotions.*
 
-#### Formato JSON
+#### JSON Format
 
-Para integração com outras aplicações, use a flag `--json`:
+For integration with other applications, use the `--json` flag:
 
-![Saída JSON](images/exemplo_json_output.svg)
+![JSON Output](images/exemplo_json_output.svg)
 
-*Formato estruturado JSON contendo todos os dados da análise, ideal para integração programática e processamento automatizado.*
+*Structured JSON format containing all analysis data, ideal for programmatic integration and automated processing.*
 
-### 2. Análise Completa de Artista
+### 2. Complete Artist Analysis
 
 ```bash
-# Análise de todas as músicas de um artista
+# Analysis of all songs by an artist
 python main.py --artist "Linkin Park"
 ```
 
-**Exemplo de saída:**
+**Example output:**
 
-![Análise de Artista - Linkin Park](images/analise_artista_linkin_park.svg)
+![Artist Analysis - Linkin Park](images/analise_artista_linkin_park.svg)
 
-*Análise completa do perfil emocional do artista, mostrando distribuição de sentimentos, estatísticas e músicas mais representativas.*
+*Complete analysis of the artist's emotional profile, showing sentiment distribution, statistics and most representative songs.*
 
-### 3. Modo Interativo
+### 3. Interactive Mode
 
 ```bash
-# Inicia o modo interativo
+# Start interactive mode
 python main.py --interactive
-# ou simplesmente
+# or simply
 python main.py
 ```
 
-**Interface interativa:**
+**Interactive interface:**
 
-![Modo Interativo](images/exemplo_modo_interativo.svg)
+![Interactive Mode](images/exemplo_modo_interativo.svg)
 
-*Interface de terminal mostrando o fluxo completo do modo interativo, desde a seleção de opções até a exibição dos resultados da análise.*
+*Terminal interface showing the complete interactive mode flow, from option selection to analysis results display.*
 
-## Estrutura do Projeto
+## Project Structure
 
 ```
 musicmood-analyzer/
 ├── src/
 │   ├── __init__.py
-│   ├── musicmood.py          # Classe principal do sistema
-│   ├── sentiment_analyzer.py # Motor de análise de sentimento
-│   ├── lyrics_fetcher.py     # Buscador de letras online
-│   └── database.py           # Gerenciador do banco SQLite
-├── main.py                   # Interface de linha de comando
-├── pyproject.toml           # Configuração e dependências
-├── README.md                # Este arquivo
-└── musicmood.db            # Banco de dados SQLite (criado automaticamente)
+│   ├── musicmood.py          # Main system class
+│   ├── sentiment_analyzer.py # Sentiment analysis engine
+│   ├── lyrics_fetcher.py     # Online lyrics fetcher
+│   └── database.py           # SQLite database manager
+├── main.py                   # Command-line interface
+├── pyproject.toml           # Configuration and dependencies
+├── README.md                # This file
+└── musicmood.db            # SQLite database (created automatically)
 ```
 
-## Tecnologias Utilizadas
+## Technologies Used
 
-- **Python 3.11+**: Linguagem principal
-- **NLTK**: Processamento de linguagem natural
-- **TextBlob**: Análise de sentimento
-- **BeautifulSoup4**: Web scraping para busca de letras
-- **Requests**: Requisições HTTP
-- **SQLite3**: Banco de dados local
-- **LyricsGenius**: API para busca de letras (opcional)
+- **Python 3.11+**: Main language
+- **NLTK**: Natural language processing
+- **TextBlob**: Sentiment analysis
+- **BeautifulSoup4**: Web scraping for lyrics fetching
+- **Requests**: HTTP requests
+- **SQLite3**: Local database
+- **LyricsGenius**: API for lyrics fetching (optional)
 
-## Algoritmo de Análise
+## Analysis Algorithm
 
-O sistema utiliza uma abordagem multi-camada para análise de sentimento:
+The system uses a multi-layer approach for sentiment analysis:
 
-### 1. Análise Lexical
-- Dicionários de palavras-chave emocionais em português e inglês
-- Detecção de intensificadores ("muito", "extremely", etc.)
-- Normalização e limpeza do texto
+### 1. Lexical Analysis
+- Emotional keyword dictionaries in Portuguese and English
+- Detection of intensifiers ("very", "extremely", etc.)
+- Text normalization and cleaning
 
-### 2. Análise Contextual
-- Processamento de frases completas
-- Consideração do contexto semântico
-- Análise de polaridade com TextBlob
+### 2. Contextual Analysis
+- Complete phrase processing
+- Semantic context consideration
+- Polarity analysis with TextBlob
 
-### 3. Classificação de Intensidade
-- Escala de 0.0 a 1.0 para intensidade emocional
-- Cálculo de confiança baseado em múltiplos fatores
-- Detecção de emoções primárias e secundárias
+### 3. Intensity Classification
+- Scale from 0.0 to 1.0 for emotional intensity
+- Confidence calculation based on multiple factors
+- Detection of primary and secondary emotions
 
-### 4. Emoções Suportadas
+### 4. Supported Emotions
 
-- **Tristeza**: Melancolia, depressão, solidão
-- **Raiva**: Frustração, irritação, violência
-- **Felicidade**: Alegria, amor, celebração
-- **Medo**: Ansiedade, insegurança, paranoia
-- **Esperança**: Otimismo, fé, sonhos
-- **Nostalgia**: Saudade, memórias, passado
+- **Sadness**: Melancholy, depression, loneliness
+- **Anger**: Frustration, irritation, violence
+- **Happiness**: Joy, love, celebration
+- **Fear**: Anxiety, insecurity, paranoia
+- **Hope**: Optimism, faith, dreams
+- **Nostalgia**: Longing, memories, past
 
-## Banco de Dados
+## Database
 
-O sistema utiliza SQLite para armazenar análises:
+The system uses SQLite to store analyses:
 
 ```sql
 CREATE TABLE musicas (
@@ -164,81 +164,81 @@ CREATE TABLE musicas (
 );
 ```
 
-## Exemplos de Uso Programático
+## Programmatic Usage Examples
 
 ```python
 from src.musicmood import MusicMoodAnalyzer
 
-# Criar instância do analisador
+# Create analyzer instance
 with MusicMoodAnalyzer() as analyzer:
-    # Analisar uma música
+    # Analyze a song
     result = analyzer.analyze_song("Numb", "Linkin Park")
-    print(f"Sentimento: {result['sentimento_primario']}")
-    print(f"Confiança: {result['confianca']:.2f}")
+    print(f"Sentiment: {result['sentimento_primario']}")
+    print(f"Confidence: {result['confianca']:.2f}")
     
-    # Analisar artista completo
+    # Analyze complete artist
     artist_analysis = analyzer.get_artist_analysis("Linkin Park")
-    print(f"Total de músicas: {artist_analysis['total_musicas']}")
+    print(f"Total songs: {artist_analysis['total_musicas']}")
     
-    # Comparar múltiplas músicas
+    # Compare multiple songs
     comparison = analyzer.compare_songs([
         ("Numb", "Linkin Park"),
         ("Happy", "Pharrell Williams"),
         ("Hurt", "Johnny Cash")
     ])
-    print(f"Mais positiva: {comparison['mais_positiva']['titulo']}")
+    print(f"Most positive: {comparison['mais_positiva']['titulo']}")
 ```
 
-## Desenvolvimento
+## Development
 
-### Estrutura de Branches
+### Branch Structure
 
-O projeto está organizado em branches temáticas:
+The project is organized in thematic branches:
 
-- `main`: Branch principal com código estável
-- `feature/nlp-processing`: Processamento de linguagem natural
-- `feature/keyword-emotions`: Sistema de palavras-chave emocionais
-- `feature/context-analysis`: Análise contextual de frases
-- `feature/intensity-scale`: Classificação de intensidade
-- `feature/multi-emotions`: Detecção de múltiplas emoções
+- `main`: Main branch with stable code
+- `feature/nlp-processing`: Natural language processing
+- `feature/keyword-emotions`: Emotional keyword system
+- `feature/context-analysis`: Contextual phrase analysis
+- `feature/intensity-scale`: Intensity classification
+- `feature/multi-emotions`: Multiple emotion detection
 
-### Contribuindo
+### Contributing
 
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
-3. Commit suas mudanças (`git commit -am 'Adiciona nova funcionalidade'`)
-4. Push para a branch (`git push origin feature/nova-funcionalidade`)
-5. Abra um Pull Request
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Open a Pull Request
 
-## Limitações e Considerações
+## Limitations and Considerations
 
-- **Dependência de fontes externas**: A busca de letras depende de sites terceiros
-- **Idiomas**: Otimizado para português e inglês
-- **Contexto cultural**: Pode não capturar nuances culturais específicas
-- **Metáforas complexas**: Linguagem muito figurativa pode ser mal interpretada
-- **Rate limiting**: Respeita limites de requisições dos sites de letras
+- **External source dependency**: Lyrics fetching depends on third-party websites
+- **Languages**: Optimized for Portuguese and English
+- **Cultural context**: May not capture specific cultural nuances
+- **Complex metaphors**: Highly figurative language may be misinterpreted
+- **Rate limiting**: Respects request limits from lyrics websites
 
 ## Roadmap
 
-- [ ] Suporte a mais idiomas
-- [ ] Integração com APIs de streaming (Spotify, Apple Music)
-- [ ] Interface web com visualizações
-- [ ] Análise de álbuns completos
-- [ ] Machine learning para melhorar precisão
-- [ ] Exportação de relatórios em PDF
-- [ ] API REST para integração
+- [ ] Support for more languages
+- [ ] Integration with streaming APIs (Spotify, Apple Music)
+- [ ] Web interface with visualizations
+- [ ] Complete album analysis
+- [ ] Machine learning to improve accuracy
+- [ ] PDF report export
+- [ ] REST API for integration
 
-## Licença
+## License
 
-Este projeto está licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para detalhes.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Autor
+## Author
 
-Desenvolvido como parte de um projeto de análise musical utilizando técnicas de processamento de linguagem natural.
+Developed as part of a musical analysis project using natural language processing techniques.
 
-## Agradecimentos
+## Acknowledgments
 
-- Comunidade NLTK pelo excelente framework de NLP
-- Desenvolvedores do TextBlob pela simplicidade na análise de sentimento
-- Sites de letras que disponibilizam conteúdo publicamente
-- Inspiração inicial baseada na análise das letras do Linkin Park
+- NLTK community for the excellent NLP framework
+- TextBlob developers for simplicity in sentiment analysis
+- Lyrics websites that make content publicly available
+- Initial inspiration based on Linkin Park lyrics analysis

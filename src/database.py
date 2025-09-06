@@ -5,14 +5,14 @@ from typing import Optional, List, Dict, Any
 
 
 class MusicDatabase:
-    """Gerencia o banco de dados SQLite para armazenar análises de sentimento musical."""
+    """Manages SQLite database for storing musical sentiment analyses."""
     
     def __init__(self, db_path: str = "musicmood.db"):
         self.db_path = db_path
         self.init_database()
     
     def init_database(self) -> None:
-        """Inicializa o banco de dados e cria as tabelas necessárias."""
+        """Initializes the database and creates necessary tables."""
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
             cursor.execute("""
@@ -39,7 +39,7 @@ class MusicDatabase:
                             pontuacao_sentimento: float,
                             sentimento_secundario: Optional[str] = None,
                             palavras_chave: Optional[str] = None) -> int:
-        """Insere uma nova análise musical no banco de dados."""
+        """Inserts a new musical analysis into the database."""
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
             try:
@@ -53,7 +53,7 @@ class MusicDatabase:
                 conn.commit()
                 return cursor.lastrowid
             except sqlite3.IntegrityError:
-                # Música já existe, atualiza os dados
+                # Song already exists, update the data
                 cursor.execute("""
                     UPDATE musicas 
                     SET letra = ?, sentimento_primario = ?, sentimento_secundario = ?,
@@ -66,7 +66,7 @@ class MusicDatabase:
                 return self.get_music_id(titulo, artista)
     
     def get_music_analysis(self, titulo: str, artista: str) -> Optional[Dict[str, Any]]:
-        """Recupera a análise de uma música específica."""
+        """Retrieves the analysis of a specific song."""
         with sqlite3.connect(self.db_path) as conn:
             conn.row_factory = sqlite3.Row
             cursor = conn.cursor()
@@ -77,7 +77,7 @@ class MusicDatabase:
             return dict(row) if row else None
     
     def get_music_id(self, titulo: str, artista: str) -> Optional[int]:
-        """Recupera o ID de uma música específica."""
+        """Retrieves the ID of a specific song."""
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
             cursor.execute("""
@@ -87,7 +87,7 @@ class MusicDatabase:
             return result[0] if result else None
     
     def get_artist_analyses(self, artista: str) -> List[Dict[str, Any]]:
-        """Recupera todas as análises de um artista específico."""
+        """Retrieves all analyses of a specific artist."""
         with sqlite3.connect(self.db_path) as conn:
             conn.row_factory = sqlite3.Row
             cursor = conn.cursor()
@@ -97,7 +97,7 @@ class MusicDatabase:
             return [dict(row) for row in cursor.fetchall()]
     
     def get_sentiment_statistics(self, artista: Optional[str] = None) -> Dict[str, Any]:
-        """Calcula estatísticas de sentimento para um artista ou geral."""
+        """Calculates sentiment statistics for an artist or general."""
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
             
@@ -122,5 +122,5 @@ class MusicDatabase:
             }
     
     def close(self) -> None:
-        """Fecha a conexão com o banco de dados."""
+        """Closes the database connection."""
         pass  # sqlite3 connections are closed automatically with context manager

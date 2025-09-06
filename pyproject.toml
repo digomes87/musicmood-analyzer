@@ -1,7 +1,7 @@
 [project]
 name = "musicmood-analyzer"
 version = "0.1.0"
-description = "Sistema de Análise de Sentimento em Letras de Música - Analisa automaticamente as emoções transmitidas pelas letras musicais"
+description = "Music Lyrics Sentiment Analysis System - Automatically analyzes emotions conveyed by song lyrics"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [

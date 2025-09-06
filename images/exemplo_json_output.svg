@@ -15,7 +15,7 @@
   <rect x="15" y="15" width="620" height="470" fill="#161b22" stroke="#21262d" stroke-width="1" rx="6"/>
   
   <!-- Header -->
-  <text x="325" y="35" text-anchor="middle" class="title">Saída JSON - MusicMood Analyzer</text>
+  <text x="325" y="35" text-anchor="middle" class="title">JSON Output - MusicMood Analyzer</text>
   
   <!-- JSON Content -->
   <text x="30" y="65" class="json-bracket">{</text>
@@ -33,10 +33,10 @@
   <text x="190" y="145" class="json-bool">true,</text>
   
   <text x="50" y="165" class="json-key">"sentimento_primario":</text>
-  <text x="210" y="165" class="json-string">"tristeza",</text>
+  <text x="210" y="165" class="json-string">"sadness",</text>
   
   <text x="50" y="185" class="json-key">"sentimento_secundario":</text>
-  <text x="220" y="185" class="json-string">"raiva",</text>
+  <text x="220" y="185" class="json-string">"anger",</text>
   
   <text x="50" y="205" class="json-key">"pontuacao_sentimento":</text>
   <text x="230" y="205" class="json-number">0.234,</text>
@@ -52,19 +52,19 @@
   <text x="50" y="305" class="json-key">"emocoes_detectadas":</text>
   <text x="210" y="305" class="json-bracket">{</text>
   
-  <text x="70" y="325" class="json-key">"tristeza":</text>
+  <text x="70" y="325" class="json-key">"sadness":</text>
   <text x="150" y="325" class="json-number">60.234,</text>
   
-  <text x="70" y="345" class="json-key">"raiva":</text>
+  <text x="70" y="345" class="json-key">"anger":</text>
   <text x="130" y="345" class="json-number">46.154,</text>
   
-  <text x="70" y="365" class="json-key">"felicidade":</text>
+  <text x="70" y="365" class="json-key">"happiness":</text>
   <text x="170" y="365" class="json-number">12.456,</text>
   
-  <text x="70" y="385" class="json-key">"medo":</text>
+  <text x="70" y="385" class="json-key">"fear":</text>
   <text x="120" y="385" class="json-number">49.301,</text>
   
-  <text x="70" y="405" class="json-key">"esperanca":</text>
+  <text x="70" y="405" class="json-key">"hope":</text>
   <text x="150" y="405" class="json-number">38.462,</text>
   
   <text x="70" y="425" class="json-key">"nostalgia":</text>
@@ -73,7 +73,7 @@
   <text x="50" y="445" class="json-bracket">},</text>
   
   <text x="50" y="465" class="json-key">"resumo":</text>
-  <text x="120" y="465" class="json-string">"Tristeza (23.4%) - Confiança moderada"</text>
+  <text x="120" y="465" class="json-string">"Sadness (23.4%) - Moderate confidence"</text>
   
   <text x="30" y="485" class="json-bracket">}</text>
 </svg>

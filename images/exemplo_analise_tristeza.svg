@@ -16,48 +16,48 @@
   <rect x="10" y="10" width="580" height="380" class="border" rx="8"/>
   
   <!-- Header -->
-  <text x="300" y="35" text-anchor="middle" class="title">ANÁLISE: Numb - Linkin Park</text>
+  <text x="300" y="35" text-anchor="middle" class="title">ANALYSIS: Numb - Linkin Park</text>
   <line x1="50" y1="45" x2="550" y2="45" stroke="#34495e" stroke-width="1"/>
   
   <!-- Main Results -->
-  <text x="30" y="75" class="header">Sentimento Primário:</text>
-  <text x="180" y="75" class="highlight">TRISTEZA</text>
+  <text x="30" y="75" class="header">Primary Sentiment:</text>
+  <text x="180" y="75" class="highlight">SADNESS</text>
   
-  <text x="30" y="100" class="header">Sentimento Secundário:</text>
-  <text x="200" y="100" class="secondary">RAIVA</text>
+  <text x="30" y="100" class="header">Secondary Sentiment:</text>
+  <text x="200" y="100" class="secondary">ANGER</text>
   
-  <text x="30" y="125" class="header">Pontuação:</text>
+  <text x="30" y="125" class="header">Score:</text>
   <text x="120" y="125" class="text">0.234 (23.4%)</text>
   
-  <text x="30" y="150" class="header">Confiança:</text>
-  <text x="110" y="150" class="text">0.452 (Moderada)</text>
+  <text x="30" y="150" class="header">Confidence:</text>
+  <text x="110" y="150" class="text">0.452 (Moderate)</text>
   
   <!-- Keywords Section -->
-  <text x="30" y="185" class="header">Palavras-chave:</text>
+  <text x="30" y="185" class="header">Keywords:</text>
   <text x="30" y="205" class="keywords">sad, cry, tears, pain, hurt</text>
   
   <!-- Emotions Chart -->
-  <text x="30" y="240" class="header">Emoções Detectadas:</text>
+  <text x="30" y="240" class="header">Detected Emotions:</text>
   
   <!-- Emotion bars -->
-  <text x="30" y="265" class="text">Tristeza:</text>
+  <text x="30" y="265" class="text">Sadness:</text>
   <rect x="100" y="255" width="120" height="15" fill="#3498db" rx="2"/>
   <text x="230" y="267" class="text">60.2%</text>
   
-  <text x="30" y="285" class="text">Raiva:</text>
+  <text x="30" y="285" class="text">Anger:</text>
   <rect x="100" y="275" width="92" height="15" fill="#e74c3c" rx="2"/>
   <text x="200" y="287" class="text">46.1%</text>
   
-  <text x="30" y="305" class="text">Medo:</text>
+  <text x="30" y="305" class="text">Fear:</text>
   <rect x="100" y="295" width="98" height="15" fill="#9b59b6" rx="2"/>
   <text x="205" y="307" class="text">49.0%</text>
   
-  <text x="30" y="325" class="text">Esperança:</text>
+  <text x="30" y="325" class="text">Hope:</text>
   <rect x="100" y="315" width="77" height="15" fill="#2ecc71" rx="2"/>
   <text x="185" y="327" class="text">38.5%</text>
   
   <!-- Summary -->
   <rect x="20" y="345" width="560" height="35" fill="#f8f9fa" stroke="#dee2e6" rx="5"/>
-  <text x="30" y="365" class="header">Resumo:</text>
-  <text x="90" y="365" class="text">Tristeza (23.4%) - Confiança moderada - Palavras-chave: sad, cry, tears</text>
+  <text x="30" y="365" class="header">Summary:</text>
+  <text x="90" y="365" class="text">Sadness (23.4%) - Moderate confidence - Keywords: sad, cry, tears</text>
 </svg>

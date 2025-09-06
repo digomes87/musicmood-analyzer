@@ -7,14 +7,14 @@ import string
 
 
 class SentimentAnalyzer:
-    """Analisa sentimentos em letras de música usando processamento de linguagem natural."""
+    """Analyzes sentiments in song lyrics using natural language processing."""
     
     def __init__(self):
         self._download_nltk_data()
         self._load_emotion_keywords()
     
     def _download_nltk_data(self):
-        """Baixa dados necessários do NLTK."""
+        """Downloads necessary NLTK data."""
         try:
             nltk.data.find('tokenizers/punkt')
         except LookupError:
@@ -31,7 +31,7 @@ class SentimentAnalyzer:
             nltk.download('averaged_perceptron_tagger')
     
     def _load_emotion_keywords(self):
-        """Carrega dicionários de palavras-chave emocionais."""
+        """Loads emotional keyword dictionaries."""
         self.emotion_keywords = {
             'tristeza': [
                 'sad', 'cry', 'tears', 'pain', 'hurt', 'broken', 'lonely', 'empty',
@@ -71,7 +71,7 @@ class SentimentAnalyzer:
             ]
         }
         
-        # Palavras intensificadoras
+        # Intensifying words
         self.intensifiers = {
             'muito': 1.5, 'extremely': 1.8, 'really': 1.3, 'so': 1.2, 'very': 1.4,
             'totally': 1.6, 'completely': 1.7, 'absolutely': 1.8, 'incredibly': 1.6,
@@ -80,7 +80,7 @@ class SentimentAnalyzer:
         }
     
     def analyze_sentiment(self, lyrics: str) -> Dict:
-        """Analisa o sentimento principal de uma letra de música."""
+        """Analyzes the main sentiment of song lyrics."""
         if not lyrics or len(lyrics.strip()) < 10:
             return {
                 'sentimento_primario': 'neutro',
@@ -91,24 +91,24 @@ class SentimentAnalyzer:
                 'emocoes_detectadas': {}
             }
         
-        # Limpa e preprocessa o texto
+        # Clean and preprocess text
         cleaned_lyrics = self._preprocess_text(lyrics)
         
-        # Análise com TextBlob
+        # TextBlob analysis
         blob = TextBlob(cleaned_lyrics)
         polarity = blob.sentiment.polarity
         subjectivity = blob.sentiment.subjectivity
         
-        # Análise de palavras-chave emocionais
+        # Emotional keyword analysis
         emotion_scores = self._analyze_emotion_keywords(cleaned_lyrics)
         
-        # Análise contextual
+        # Contextual analysis
         context_score = self._analyze_context(cleaned_lyrics)
         
-        # Combina as análises
+        # Combine analyses
         final_analysis = self._combine_analyses(polarity, emotion_scores, context_score)
         
-        # Calcula confiança
+        # Calculate confidence
         confidence = self._calculate_confidence(subjectivity, emotion_scores, len(cleaned_lyrics))
         
         return {
@@ -121,36 +121,36 @@ class SentimentAnalyzer:
         }
     
     def _preprocess_text(self, text: str) -> str:
-        """Preprocessa o texto para análise."""
-        # Remove caracteres especiais mas mantém pontuação básica
+        """Preprocesses text for analysis."""
+        # Remove special characters but keep basic punctuation
         text = re.sub(r'[^\w\s.,!?;:-]', ' ', text)
-        # Normaliza espaços
+        # Normalize spaces
         text = re.sub(r'\s+', ' ', text)
-        # Remove linhas muito curtas
+        # Remove very short lines
         lines = [line.strip() for line in text.split('\n') if len(line.strip()) > 3]
         return ' '.join(lines).strip().lower()
     
     def _analyze_emotion_keywords(self, text: str) -> Dict[str, float]:
-        """Analisa palavras-chave emocionais no texto."""
+        """Analyzes emotional keywords in text."""
         words = nltk.word_tokenize(text)
         emotion_scores = {emotion: 0.0 for emotion in self.emotion_keywords}
         
         for i, word in enumerate(words):
-            # Verifica intensificadores
+            # Check intensifiers
             intensity_multiplier = 1.0
             if i > 0 and words[i-1] in self.intensifiers:
                 intensity_multiplier = self.intensifiers[words[i-1]]
             
-            # Conta ocorrências de palavras emocionais
+            # Count emotional word occurrences
             for emotion, keywords in self.emotion_keywords.items():
                 if word in keywords:
                     emotion_scores[emotion] += intensity_multiplier
-                # Verifica variações da palavra
+                # Check word variations
                 for keyword in keywords:
                     if keyword in word or word in keyword:
                         emotion_scores[emotion] += 0.5 * intensity_multiplier
         
-        # Normaliza scores pelo comprimento do texto
+        # Normalize scores by text length
         total_words = len(words)
         if total_words > 0:
             for emotion in emotion_scores:
@@ -159,7 +159,7 @@ class SentimentAnalyzer:
         return emotion_scores
     
     def _analyze_context(self, text: str) -> Dict[str, float]:
-        """Analisa o contexto das frases para detectar sentimentos."""
+        """Analyzes sentence context to detect sentiments."""
         sentences = nltk.sent_tokenize(text)
         context_scores = {emotion: 0.0 for emotion in self.emotion_keywords}
         
@@ -167,7 +167,7 @@ class SentimentAnalyzer:
             blob = TextBlob(sentence)
             polarity = blob.sentiment.polarity
             
-            # Mapeia polaridade para emoções
+            # Map polarity to emotions
             if polarity < -0.3:
                 context_scores['tristeza'] += abs(polarity)
                 context_scores['raiva'] += abs(polarity) * 0.5
@@ -181,8 +181,8 @@ class SentimentAnalyzer:
     
     def _combine_analyses(self, polarity: float, emotion_scores: Dict[str, float], 
                          context_scores: Dict[str, float]) -> Dict:
-        """Combina diferentes análises para resultado final."""
-        # Combina scores de emoção e contexto
+        """Combines different analyses for final result."""
+        # Combine emotion and context scores
         combined_scores = {}
         for emotion in emotion_scores:
             combined_scores[emotion] = (
@@ -190,7 +190,7 @@ class SentimentAnalyzer:
                 context_scores.get(emotion, 0) * 0.3
             )
         
-        # Ajusta com base na polaridade geral
+        # Adjust based on general polarity
         if polarity < -0.2:
             combined_scores['tristeza'] *= 1.3
             combined_scores['raiva'] *= 1.2
@@ -198,7 +198,7 @@ class SentimentAnalyzer:
             combined_scores['felicidade'] *= 1.3
             combined_scores['esperança'] *= 1.2
         
-        # Encontra emoções primária e secundária
+        # Find primary and secondary emotions
         sorted_emotions = sorted(combined_scores.items(), key=lambda x: x[1], reverse=True)
         
         primary_emotion = sorted_emotions[0][0] if sorted_emotions[0][1] > 0.1 else 'neutro'
@@ -207,21 +207,21 @@ class SentimentAnalyzer:
         if len(sorted_emotions) > 1 and sorted_emotions[1][1] > 0.05:
             secondary_emotion = sorted_emotions[1][0]
         
-        # Calcula score final
+        # Calculate final score
         final_score = sorted_emotions[0][1] if sorted_emotions else 0.0
         
-        # Extrai palavras-chave relevantes
+        # Extract relevant keywords
         keywords = self._extract_keywords(primary_emotion, secondary_emotion)
         
         return {
             'primary': primary_emotion,
             'secondary': secondary_emotion,
-            'score': min(final_score, 1.0),  # Limita a 1.0
+            'score': min(final_score, 1.0),  # Limit to 1.0
             'keywords': keywords
         }
     
     def _extract_keywords(self, primary: str, secondary: Optional[str]) -> List[str]:
-        """Extrai palavras-chave relevantes para as emoções detectadas."""
+        """Extracts relevant keywords for detected emotions."""
         keywords = []
         
         if primary in self.emotion_keywords:
@@ -234,11 +234,11 @@ class SentimentAnalyzer:
     
     def _calculate_confidence(self, subjectivity: float, emotion_scores: Dict[str, float], 
                             text_length: int) -> float:
-        """Calcula a confiança na análise."""
-        # Fatores que influenciam a confiança
-        subjectivity_factor = subjectivity  # Textos mais subjetivos são mais confiáveis
+        """Calculates confidence in the analysis."""
+        # Factors that influence confidence
+        subjectivity_factor = subjectivity  # More subjective texts are more reliable
         emotion_strength = max(emotion_scores.values()) if emotion_scores else 0
-        length_factor = min(text_length / 500, 1.0)  # Textos mais longos são mais confiáveis
+        length_factor = min(text_length / 500, 1.0)  # Longer texts are more reliable
         
         confidence = (subjectivity_factor * 0.4 + 
                      emotion_strength * 0.4 + 
