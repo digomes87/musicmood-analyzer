@@ -53,22 +53,22 @@ python main.py "Numb" "Linkin Park" --json
 
 ```
 ============================================================
-🎵 ANÁLISE: Numb - Linkin Park
+ANÁLISE: Numb - Linkin Park
 ============================================================
-📊 Sentimento Primário: TRISTEZA
-📈 Sentimento Secundário: RAIVA
+Sentimento Primário: TRISTEZA
+Sentimento Secundário: RAIVA
  Pontuação: 0.847
  Confiança: 0.782
-🔑 Palavras-chave: tired, pressure, hurt, broken, empty
-📝 Resumo: Tristeza (84.7%) - Alta confiança - Palavras-chave: tired, pressure, hurt
+Palavras-chave: tired, pressure, hurt, broken, empty
+ Resumo: Tristeza (84.7%) - Alta confiança - Palavras-chave: tired, pressure, hurt
 
-📊 Emoções Detectadas:
+Emoções Detectadas:
    Tristeza: 0.847
    Raiva: 0.234
    Medo: 0.156
    Nostalgia: 0.089
 
-📖 Trecho da letra:
+Trecho da letra:
 I'm tired of being what you want me to be
 Feeling so faithless, lost under the surface
 I don't know what you're expecting of me
@@ -87,22 +87,22 @@ python main.py --artist "Linkin Park"
 
 ```
 ============================================================
-🎤 ANÁLISE DO ARTISTA: LINKIN PARK
+ANÁLISE DO ARTISTA: LINKIN PARK
 ============================================================
-📊 Total de músicas analisadas: 15
-🎭 Sentimento predominante: TRISTEZA
-📈 Pontuação média: 0.673
+Total de músicas analisadas: 15
+Sentimento predominante: TRISTEZA
+Pontuação média: 0.673
 
-📊 Distribuição de Sentimentos:
+Distribuição de Sentimentos:
    Tristeza: 8 músicas (53.3%)
    Raiva: 4 músicas (26.7%)
    Esperança: 2 músicas (13.3%)
    Nostalgia: 1 música (6.7%)
 
-😢 Música mais triste: Heavy (0.912)
-😊 Música mais feliz: What I've Done (0.234)
+ Música mais triste: Heavy (0.912)
+ Música mais feliz: What I've Done (0.234)
 
-🕒 Últimas análises:
+ Últimas análises:
    • Numb - tristeza (0.847)
    • In the End - nostalgia (0.756)
    • Crawling - tristeza (0.823)
@@ -121,7 +121,7 @@ python main.py
 **Interface interativa:**
 
 ```
-🎵 MusicMood Analyzer - Modo Interativo
+MusicMood Analyzer - Modo Interativo
 Digite 'sair' para encerrar
 
 Opções:
