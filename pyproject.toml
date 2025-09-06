@@ -1,0 +1,14 @@
+[project]
+name = "musicmood-analyzer"
+version = "0.1.0"
+description = "Sistema de Análise de Sentimento em Letras de Música - Analisa automaticamente as emoções transmitidas pelas letras musicais"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.0",
+    "nltk>=3.8.0",
+    "textblob>=0.17.0",
+    "lyricsgenius>=3.0.0",
+    "python-dotenv>=1.0.0"
+]
