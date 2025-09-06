@@ -51,30 +51,17 @@ python main.py "Numb" "Linkin Park" --json
 
 **Exemplo de saída:**
 
-```
-============================================================
-ANÁLISE: Numb - Linkin Park
-============================================================
-Sentimento Primário: TRISTEZA
-Sentimento Secundário: RAIVA
- Pontuação: 0.847
- Confiança: 0.782
-Palavras-chave: tired, pressure, hurt, broken, empty
- Resumo: Tristeza (84.7%) - Alta confiança - Palavras-chave: tired, pressure, hurt
+![Exemplo de Análise - Tristeza](images/exemplo_analise_tristeza.svg)
 
-Emoções Detectadas:
-   Tristeza: 0.847
-   Raiva: 0.234
-   Medo: 0.156
-   Nostalgia: 0.089
+*Análise detalhada mostrando sentimento primário (Tristeza), secundário (Raiva), pontuação de confiança e distribuição de emoções detectadas.*
 
-Trecho da letra:
-I'm tired of being what you want me to be
-Feeling so faithless, lost under the surface
-I don't know what you're expecting of me
-Put under the pressure of walking in your shoes...
-============================================================
-```
+#### Formato JSON
+
+Para integração com outras aplicações, use a flag `--json`:
+
+![Saída JSON](images/exemplo_json_output.svg)
+
+*Formato estruturado JSON contendo todos os dados da análise, ideal para integração programática e processamento automatizado.*
 
 ### 2. Análise Completa de Artista
 
@@ -85,29 +72,9 @@ python main.py --artist "Linkin Park"
 
 **Exemplo de saída:**
 
-```
-============================================================
-ANÁLISE DO ARTISTA: LINKIN PARK
-============================================================
-Total de músicas analisadas: 15
-Sentimento predominante: TRISTEZA
-Pontuação média: 0.673
+![Análise de Artista - Linkin Park](images/analise_artista_linkin_park.svg)
 
-Distribuição de Sentimentos:
-   Tristeza: 8 músicas (53.3%)
-   Raiva: 4 músicas (26.7%)
-   Esperança: 2 músicas (13.3%)
-   Nostalgia: 1 música (6.7%)
-
- Música mais triste: Heavy (0.912)
- Música mais feliz: What I've Done (0.234)
-
- Últimas análises:
-   • Numb - tristeza (0.847)
-   • In the End - nostalgia (0.756)
-   • Crawling - tristeza (0.823)
-============================================================
-```
+*Análise completa do perfil emocional do artista, mostrando distribuição de sentimentos, estatísticas e músicas mais representativas.*
 
 ### 3. Modo Interativo
 
@@ -120,21 +87,9 @@ python main.py
 
 **Interface interativa:**
 
-```
-MusicMood Analyzer - Modo Interativo
-Digite 'sair' para encerrar
+![Modo Interativo](images/exemplo_modo_interativo.svg)
 
-Opções:
-1. Analisar música
-2. Analisar artista
-3. Sair
-
-Escolha uma opção (1-3): 1
-Nome da música: Numb
-Nome do artista: Linkin Park
-
-[Resultado da análise...]
-```
+*Interface de terminal mostrando o fluxo completo do modo interativo, desde a seleção de opções até a exibição dos resultados da análise.*
 
 ## Estrutura do Projeto
 

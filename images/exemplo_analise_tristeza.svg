@@ -1,0 +1,63 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #2c3e50; }
+      .header { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #34495e; }
+      .text { font-family: Arial, sans-serif; font-size: 12px; fill: #2c3e50; }
+      .highlight { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; fill: #e74c3c; }
+      .secondary { font-family: Arial, sans-serif; font-size: 12px; fill: #f39c12; }
+      .keywords { font-family: Arial, sans-serif; font-size: 11px; fill: #8e44ad; }
+      .border { fill: none; stroke: #bdc3c7; stroke-width: 2; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="400" fill="#ecf0f1" rx="10"/>
+  <rect x="10" y="10" width="580" height="380" class="border" rx="8"/>
+  
+  <!-- Header -->
+  <text x="300" y="35" text-anchor="middle" class="title">ANÁLISE: Numb - Linkin Park</text>
+  <line x1="50" y1="45" x2="550" y2="45" stroke="#34495e" stroke-width="1"/>
+  
+  <!-- Main Results -->
+  <text x="30" y="75" class="header">Sentimento Primário:</text>
+  <text x="180" y="75" class="highlight">TRISTEZA</text>
+  
+  <text x="30" y="100" class="header">Sentimento Secundário:</text>
+  <text x="200" y="100" class="secondary">RAIVA</text>
+  
+  <text x="30" y="125" class="header">Pontuação:</text>
+  <text x="120" y="125" class="text">0.234 (23.4%)</text>
+  
+  <text x="30" y="150" class="header">Confiança:</text>
+  <text x="110" y="150" class="text">0.452 (Moderada)</text>
+  
+  <!-- Keywords Section -->
+  <text x="30" y="185" class="header">Palavras-chave:</text>
+  <text x="30" y="205" class="keywords">sad, cry, tears, pain, hurt</text>
+  
+  <!-- Emotions Chart -->
+  <text x="30" y="240" class="header">Emoções Detectadas:</text>
+  
+  <!-- Emotion bars -->
+  <text x="30" y="265" class="text">Tristeza:</text>
+  <rect x="100" y="255" width="120" height="15" fill="#3498db" rx="2"/>
+  <text x="230" y="267" class="text">60.2%</text>
+  
+  <text x="30" y="285" class="text">Raiva:</text>
+  <rect x="100" y="275" width="92" height="15" fill="#e74c3c" rx="2"/>
+  <text x="200" y="287" class="text">46.1%</text>
+  
+  <text x="30" y="305" class="text">Medo:</text>
+  <rect x="100" y="295" width="98" height="15" fill="#9b59b6" rx="2"/>
+  <text x="205" y="307" class="text">49.0%</text>
+  
+  <text x="30" y="325" class="text">Esperança:</text>
+  <rect x="100" y="315" width="77" height="15" fill="#2ecc71" rx="2"/>
+  <text x="185" y="327" class="text">38.5%</text>
+  
+  <!-- Summary -->
+  <rect x="20" y="345" width="560" height="35" fill="#f8f9fa" stroke="#dee2e6" rx="5"/>
+  <text x="30" y="365" class="header">Resumo:</text>
+  <text x="90" y="365" class="text">Tristeza (23.4%) - Confiança moderada - Palavras-chave: sad, cry, tears</text>
+</svg>

@@ -35,14 +35,14 @@ def print_analysis_result(result):
         if result.get('palavras_chave'):
             print(f"🔑 Palavras-chave: {', '.join(result['palavras_chave'][:5])}")
         
-        print(f"📝 Resumo: {result['resumo']}")
+        print(f" Resumo: {result['resumo']}")
         
         print("\n Emoções Detectadas:")
         for emocao, score in result.get('emocoes_detectadas', {}).items():
             if score > 0.01:
                 print(f"   {emocao.title()}: {score:.3f}")
         
-        print(f"\n📖 Trecho da letra:")
+        print(f"\nTrecho da letra:")
         print(f"{result['letra'][:200]}...")
     
     print("\n" + "="*60)
@@ -69,13 +69,13 @@ def print_artist_analysis(result):
     
     if result.get('musica_mais_triste'):
         triste = result['musica_mais_triste']
-        print(f"\n😢 Música mais triste: {triste['titulo']} ({triste['pontuacao_sentimento']:.3f})")
+        print(f"\n Música mais triste: {triste['titulo']} ({triste['pontuacao_sentimento']:.3f})")
     
     if result.get('musica_mais_feliz'):
         feliz = result['musica_mais_feliz']
-        print(f"😊 Música mais feliz: {feliz['titulo']} ({feliz['pontuacao_sentimento']:.3f})")
+        print(f" Música mais feliz: {feliz['titulo']} ({feliz['pontuacao_sentimento']:.3f})")
     
-    print("\n🕒 Últimas análises:")
+    print("\n Últimas análises:")
     for analise in result.get('ultimas_analises', [])[:3]:
         print(f"   • {analise['titulo']} - {analise['sentimento_primario']} ({analise['pontuacao_sentimento']:.3f})")
     
@@ -122,7 +122,7 @@ def interactive_mode():
                     print(" Por favor, forneça o nome do artista.")
             
             elif choice == '3' or choice.lower() == 'sair':
-                print("👋 Obrigado por usar o MusicMood Analyzer!")
+                print(" Obrigado por usar o MusicMood Analyzer!")
                 break
             
             else:
