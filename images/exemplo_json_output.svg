@@ -12,11 +12,11 @@
   </defs>
   
   <!-- Background -->
-  <rect width="650" height="500" fill="#2c3e50" rx="10"/>
-  <rect x="10" y="10" width="630" height="480" fill="#34495e" rx="8"/>
+  <rect width="650" height="500" fill="#f8f9fa" rx="10"/>
+  <rect x="10" y="10" width="630" height="480" fill="#ffffff" stroke="#dee2e6" stroke-width="1" rx="8"/>
   
   <!-- Header -->
-  <text x="325" y="35" text-anchor="middle" class="title" fill="#ecf0f1">Saída JSON - MusicMood Analyzer</text>
+  <text x="325" y="35" text-anchor="middle" class="title">Saída JSON - MusicMood Analyzer</text>
   
   <!-- JSON Content -->
   <text x="30" y="65" class="json-bracket">{</text>
