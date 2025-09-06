@@ -23,7 +23,7 @@ Sistema de Análise de Sentimento em Letras de Música que identifica automatica
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/musicmood-analyzer.git
+git clone https://github.com/digomes87/musicmood-analyzer
 cd musicmood-analyzer
 
 # Crie e ative o ambiente virtual
