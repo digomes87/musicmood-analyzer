@@ -1,9 +1,7 @@
 import nltk
 from textblob import TextBlob
 import re
-from typing import Dict, List, Tuple, Optional
-from collections import Counter
-import string
+from typing import Dict, List, Optional
 
 
 class SentimentAnalyzer:
@@ -96,8 +94,9 @@ class SentimentAnalyzer:
         
         # TextBlob analysis
         blob = TextBlob(cleaned_lyrics)
-        polarity = blob.sentiment.polarity
-        subjectivity = blob.sentiment.subjectivity
+        sentiment_obj = blob.sentiment
+        polarity = float(sentiment_obj.polarity)  # type: ignore
+        subjectivity = float(sentiment_obj.subjectivity)  # type: ignore
         
         # Emotional keyword analysis
         emotion_scores = self._analyze_emotion_keywords(cleaned_lyrics)
@@ -165,7 +164,8 @@ class SentimentAnalyzer:
         
         for sentence in sentences:
             blob = TextBlob(sentence)
-            polarity = blob.sentiment.polarity
+            sentiment_obj = blob.sentiment
+            polarity = float(sentiment_obj.polarity)  # type: ignore
             
             # Map polarity to emotions
             if polarity < -0.3:

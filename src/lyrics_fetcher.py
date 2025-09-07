@@ -1,5 +1,5 @@
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 import re
 from typing import Optional
 import time
@@ -102,10 +102,11 @@ class LyricsFetcher:
         ]
         
         for container in lyrics_containers:
-            if container:
+            if container and isinstance(container, Tag):
                 # Remove unnecessary elements
                 for elem in container.find_all(['script', 'style', 'a']):
-                    elem.decompose()
+                    if isinstance(elem, Tag):
+                        elem.decompose()
                 
                 text = container.get_text(separator='\n').strip()
                 if len(text) > 50:
@@ -132,10 +133,11 @@ class LyricsFetcher:
         if not lyrics_div:
             lyrics_div = soup.find('div', class_='letra-cnt')
         
-        if lyrics_div:
+        if lyrics_div and isinstance(lyrics_div, Tag):
             # Remove unnecessary elements
             for elem in lyrics_div.find_all(['script', 'style']):
-                elem.decompose()
+                if isinstance(elem, Tag):
+                    elem.decompose()
             
             text = lyrics_div.get_text(separator='\n').strip()
             if len(text) > 50:

@@ -1,5 +1,4 @@
 import sqlite3
-import os
 from datetime import datetime
 from typing import Optional, List, Dict, Any
 
@@ -51,7 +50,7 @@ class MusicDatabase:
                 """, (titulo, artista, letra, sentimento_primario, sentimento_secundario,
                       pontuacao_sentimento, palavras_chave, datetime.now()))
                 conn.commit()
-                return cursor.lastrowid
+                return cursor.lastrowid or 0
             except sqlite3.IntegrityError:
                 # Song already exists, update the data
                 cursor.execute("""
@@ -63,7 +62,8 @@ class MusicDatabase:
                       pontuacao_sentimento, palavras_chave, datetime.now(),
                       titulo, artista))
                 conn.commit()
-                return self.get_music_id(titulo, artista)
+                music_id = self.get_music_id(titulo, artista)
+                return music_id if music_id is not None else 0
     
     def get_music_analysis(self, titulo: str, artista: str) -> Optional[Dict[str, Any]]:
         """Retrieves the analysis of a specific song."""

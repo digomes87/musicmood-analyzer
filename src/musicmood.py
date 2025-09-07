@@ -1,5 +1,4 @@
-from typing import Dict, Optional, List
-import os
+from typing import Dict, List
 from .database import MusicDatabase
 from .lyrics_fetcher import LyricsFetcher
 from .sentiment_analyzer import SentimentAnalyzer
@@ -142,7 +141,7 @@ class MusicMoodAnalyzer:
         """Search songs by specific sentiment."""
         # This functionality requires a more specific database query
         # For simplicity, we'll implement a basic version
-        pass
+        return []
     
     def _format_analysis_result(self, db_result: Dict) -> Dict:
         """Formats database result for display."""
